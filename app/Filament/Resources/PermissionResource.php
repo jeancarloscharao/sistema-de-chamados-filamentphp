@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LabelResource\Pages;
-use App\Filament\Resources\LabelResource\RelationManagers;
-use App\Models\Label;
+use App\Filament\Resources\PermissionResource\Pages;
+use App\Filament\Resources\PermissionResource\RelationManagers;
+use App\Models\Permission;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,27 +13,17 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class LabelResource extends Resource
+class PermissionResource extends Resource
 {
-    protected static ?string $model = Label::class;
+    protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
-
-
-    protected static ?string $navigationLabel = 'Rótulos';
-
-    protected static ?string $pluralLabel = 'Rótulos';
-
-    protected static ?string $label = 'Rótulo';
-
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required()->label('Nome'),
-                Forms\Components\Checkbox::make('is_active')->label('Ativo')
+                Forms\Components\TextInput::make('title')->required()->label('Título'),
             ]);
     }
 
@@ -41,8 +31,7 @@ class LabelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable()->label('Nome'),
-                Tables\Columns\ToggleColumn::make('is_active')->label('Ativo')
+                Tables\Columns\TextColumn::make('title')->label('Título')->sortable()->searchable(),
             ])
             ->filters([
                 //
@@ -66,9 +55,9 @@ class LabelResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLabels::route('/'),
-            'create' => Pages\CreateLabel::route('/create'),
-            'edit' => Pages\EditLabel::route('/{record}/edit'),
+            'index' => Pages\ListPermissions::route('/'),
+            'create' => Pages\CreatePermission::route('/create'),
+            'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
     }
 }

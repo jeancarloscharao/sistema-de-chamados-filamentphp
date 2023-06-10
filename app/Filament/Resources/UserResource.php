@@ -12,6 +12,9 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\UserResource\RelationManagers\RolesRelationManager;
+use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -34,7 +37,12 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->label('Nome'),
                 Forms\Components\TextInput::make('email')->type('email')->required()->label('E-mail'),
-                Forms\Components\TextInput::make('password')->type('password')->required()->label('Senha'),
+                Forms\Components\TextInput::make('password')
+                ->password()
+                ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                ->dehydrated(fn ($state) => filled($state))
+                    ->disableAutocomplete()
+                    ->label('Senha'),
             ]);
     }
 
@@ -50,6 +58,7 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -59,7 +68,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RolesRelationManager::class,
         ];
     }
 
