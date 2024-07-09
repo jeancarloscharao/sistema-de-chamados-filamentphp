@@ -1,66 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Sistema de Chamados
 
-## About Laravel
+Este repositório contém um sistema de chamados desenvolvido com o framework Laravel e a biblioteca FilamentPHP. Este sistema foi criado para gerenciar e acompanhar tickets de suporte de forma eficiente e intuitiva.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Criação de Chamados**: Permite aos usuários criar novos tickets de suporte detalhando o problema ou solicitação.
+- **Acompanhamento de Chamados**: Acompanhe o status e o progresso de cada chamado, desde a criação até a resolução.
+- **Notificações**: Receba notificações sobre atualizações importantes nos chamados.
+- **Gerenciamento de Usuários**: Controle de acesso e permissões para diferentes tipos de usuários (administradores, técnicos, clientes).
+- **Dashboard Interativa**: Visualize estatísticas e métricas importantes sobre os chamados através de gráficos e tabelas.
+- **Relatórios**: Gere relatórios detalhados sobre os chamados para análise e melhoria contínua.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologias Utilizadas
 
-## Learning Laravel
+- **Laravel**: Framework PHP robusto e flexível para o desenvolvimento de aplicações web.
+- **FilamentPHP**: Biblioteca para a criação de interfaces administrativas com Laravel.
+- **MySQL**: Banco de dados relacional utilizado para armazenar as informações dos chamados.
+- **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
+- **Laravel Sail**: Ambiente de desenvolvimento leve para Laravel utilizando Docker.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/sistema-de-chamados.git
+   ```
 
-## Laravel Sponsors
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd sistema-de-chamados
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. Instale as dependências do Composer:
+   ```bash
+   composer install
+   ```
 
-### Premium Partners
+4. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
+   ```bash
+   cp .env.example .env
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. Gere a chave da aplicação:
+   ```bash
+   php artisan key:generate
+   ```
 
-## Contributing
+6. Instale o Laravel Sail e suas dependências:
+   ```bash
+   composer require laravel/sail --dev
+   php artisan sail:install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. Inicialize os containers do Sail:
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
 
-## Code of Conduct
+8. Execute as migrações e seeders para configurar o banco de dados:
+   ```bash
+   ./vendor/bin/sail artisan migrate --seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Contribuição
 
-## Security Vulnerabilities
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Licença
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este projeto está licenciado sob a [MIT License](LICENSE).
